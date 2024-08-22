@@ -1,0 +1,28 @@
+eureka:
+  client:
+    register-with-eureka: false
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mvcs-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: users
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/users/**
+        - id: reservations
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/reservations/**
+        - id: services
+          uri: http://localhost:8092
+          predicates:
+            - Path=/api/services/**
