@@ -1,5 +1,6 @@
 package com.linktic.microservice_services.service;
 
+import com.linktic.microservice_services.exception.ServiceNotFoundException;
 import com.linktic.microservice_services.persistence.IServiceRepository;
 import com.linktic.microservice_services.entities.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ServiceServiceImpl implements IServiceService {
 
     @Override
     public Service findById(Long id) {
-        return serviceRepository.findById(id).orElseThrow();
+        return serviceRepository.findById(id).orElseThrow(() -> new ServiceNotFoundException(id));
     }
 
     @Override

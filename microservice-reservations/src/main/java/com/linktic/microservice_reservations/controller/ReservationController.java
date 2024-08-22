@@ -1,11 +1,15 @@
 package com.linktic.microservice_reservations.controller;
 
+import com.linktic.microservice_reservations.dto.ReservationDTO;
 import com.linktic.microservice_reservations.dto.ReservationFiltersDTO;
 import com.linktic.microservice_reservations.entities.Reservation;
+import com.linktic.microservice_reservations.entities.ReservationStatus;
 import com.linktic.microservice_reservations.service.IReservationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -13,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/api/reservations")
+@Validated
 public class ReservationController {
 
     @Autowired
@@ -20,14 +25,22 @@ public class ReservationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveReservation(@RequestBody Reservation reservation) {
+    public void saveReservation(@Valid @RequestBody ReservationDTO reservation) {
         reservationService.save(reservation);
     }
 
-    @PutMapping
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> updateReservation(@RequestBody Reservation reservation) {
-        return ResponseEntity.ok(reservationService.update(reservation));
+    public ResponseEntity<?> updateReservation(@PathVariable Long id, @Valid @RequestBody ReservationDTO reservation) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        Reservation reservationEntity = new Reservation();
+        reservationEntity.setId(id);
+        reservationEntity.setUserId(reservation.getUserId());
+        reservationEntity.setServiceId(reservation.getServiceId());
+        reservationEntity.setStartDate(LocalDateTime.parse(reservation.getStartDate(), formatter));
+        reservationEntity.setEndDate(LocalDateTime.parse(reservation.getEndDate(), formatter));
+        reservationEntity.setStatus(ReservationStatus.valueOf(reservation.getStatus()));
+        return ResponseEntity.ok(reservationService.update(reservationEntity));
     }
 
     @ResponseStatus(HttpStatus.OK)
