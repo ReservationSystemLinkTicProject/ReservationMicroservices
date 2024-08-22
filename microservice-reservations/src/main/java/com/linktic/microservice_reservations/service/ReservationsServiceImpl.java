@@ -1,6 +1,8 @@
 package com.linktic.microservice_reservations.service;
 
+import com.linktic.microservice_reservations.client.IUserClient;
 import com.linktic.microservice_reservations.dto.ReservationFiltersDTO;
+import com.linktic.microservice_reservations.dto.UserDto;
 import com.linktic.microservice_reservations.entities.Reservation;
 import com.linktic.microservice_reservations.repository.IReservationRepository;
 import com.linktic.microservice_reservations.repository.IReservationRepositoryCustom;
@@ -16,6 +18,9 @@ public class ReservationsServiceImpl implements IReservationService {
     private IReservationRepository reservationRepository;
     @Autowired
     private IReservationRepositoryCustom reservationRepositoryCustom;
+    @Autowired
+    private IUserClient userClient;
+
     @Override
     public List<Reservation> findAll() {
         return (List<Reservation>) reservationRepository.findAll();
@@ -28,6 +33,7 @@ public class ReservationsServiceImpl implements IReservationService {
 
     @Override
     public void save(Reservation reservation) {
+        userClient.findById(reservation.getUserId());
         reservationRepository.save(reservation);
     }
 

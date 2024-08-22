@@ -1,6 +1,7 @@
 package com.linktic.microservice_user.service;
 
 import com.linktic.microservice_user.entities.User;
+import com.linktic.microservice_user.exception.UserNotFoundException;
 import com.linktic.microservice_user.persistence.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements  IUserService{
 
     @Override
     public User findById(Long id) {
-        return IUserRepository.findById(id).orElseThrow();
+        return IUserRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Override
