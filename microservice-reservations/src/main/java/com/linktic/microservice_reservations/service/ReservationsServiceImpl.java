@@ -12,7 +12,7 @@ import com.linktic.microservice_reservations.repository.IReservationRepositoryCu
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -43,12 +43,12 @@ public class ReservationsServiceImpl implements IReservationService {
     public void save(ReservationDTO reservation) {
         userClient.findById(reservation.getUserId());
         serviceClient.findById(reservation.getServiceId());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Reservation reservationEntity = new Reservation();
         reservationEntity.setUserId(reservation.getUserId());
         reservationEntity.setServiceId(reservation.getServiceId());
-        reservationEntity.setStartDate(LocalDateTime.parse(reservation.getStartDate(), formatter));
-        reservationEntity.setEndDate(LocalDateTime.parse(reservation.getEndDate(), formatter));
+        reservationEntity.setStartDate(LocalDate.parse(reservation.getStartDate(), formatter));
+        reservationEntity.setEndDate(LocalDate.parse(reservation.getEndDate(), formatter));
         reservationEntity.setStatus(ReservationStatus.valueOf(reservation.getStatus()));
         reservationRepository.save(reservationEntity);
     }

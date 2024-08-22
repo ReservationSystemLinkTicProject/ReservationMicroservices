@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @RestController
@@ -32,13 +32,13 @@ public class ReservationController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> updateReservation(@PathVariable Long id, @Valid @RequestBody ReservationDTO reservation) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Reservation reservationEntity = new Reservation();
         reservationEntity.setId(id);
         reservationEntity.setUserId(reservation.getUserId());
         reservationEntity.setServiceId(reservation.getServiceId());
-        reservationEntity.setStartDate(LocalDateTime.parse(reservation.getStartDate(), formatter));
-        reservationEntity.setEndDate(LocalDateTime.parse(reservation.getEndDate(), formatter));
+        reservationEntity.setStartDate(LocalDate.parse(reservation.getStartDate(), formatter));
+        reservationEntity.setEndDate(LocalDate.parse(reservation.getEndDate(), formatter));
         reservationEntity.setStatus(ReservationStatus.valueOf(reservation.getStatus()));
         return ResponseEntity.ok(reservationService.update(reservationEntity));
     }
@@ -63,7 +63,7 @@ public class ReservationController {
                                                       @RequestParam(required = false) String endDate,
                                                       @RequestParam(required = false) String status) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         ReservationFiltersDTO filters = new ReservationFiltersDTO();
 
@@ -80,11 +80,11 @@ public class ReservationController {
         }
 
         if (startDate != null && !startDate.isEmpty()) {
-            filters.setStartDate(LocalDateTime.parse(startDate, formatter));
+            filters.setStartDate(LocalDate.parse(startDate, formatter));
         }
 
         if (endDate != null && !endDate.isEmpty()) {
-            filters.setEndDate(LocalDateTime.parse(endDate, formatter));
+            filters.setEndDate(LocalDate.parse(endDate, formatter));
         }
 
         return ResponseEntity.ok(reservationService.findReservationByFilters(filters));
