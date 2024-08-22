@@ -26,3 +26,9 @@ spring:
           uri: http://localhost:8092
           predicates:
             - Path=/api/services/**
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
