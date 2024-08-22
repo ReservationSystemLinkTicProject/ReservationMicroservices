@@ -1,0 +1,3 @@
+insert into reservation_system.reservations (user_id, service_id, status, start_date, end_date,created_at)  values (1,1,"active","2024-08-25","2024-08-28",now());
+insert into reservation_system.reservations (user_id, service_id, status, start_date, end_date,created_at)  values (2,1,"cancelled","2024-08-25","2024-08-26",now());
+insert into reservation_system.reservations (user_id, service_id, status, start_date, end_date,created_at)  values (3,1,"complete","2024-08-22","2024-08-24",now());

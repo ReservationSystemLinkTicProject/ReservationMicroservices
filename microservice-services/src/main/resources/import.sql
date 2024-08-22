@@ -1,0 +1,4 @@
+insert into reservation_system.services (name, description, price, image_url, created_at)  values ("Deluxe room","A classic room","1.000.000", "https://image-tc.galaxy.tf/wijpeg-afu0zj5rhmyyirzditj3g96mk/deluxe-room-king-1-2000px.jpg",now());
+insert into reservation_system.services (name, description, price, image_url, created_at)  values ("Premium room","A Premium room","3.000.000", "https://spacepattaya.com/assets/mobile/images/room_premium/02.jpg?v=47",now());
+insert into reservation_system.services (name, description, price, image_url, created_at)  values ("Vip room","A vip room","5.000.000", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBs-Xuoma2I61TRwWjAX4p3qLoK_KILLwmwQ&s",now());
+insert into reservation_system.services (name, description, price, image_url, created_at)  values ("Ultimate room","A ultimate room","8.000.000", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLT1YgT3T2zhw9fql64yAvGayQRvMUO5X-EA&s",now());
