@@ -20,6 +20,7 @@
     <modules>
         <module>api-gateway</module>
         <module>microservice-config</module>
+        <module>microservice-eureka</module>
     </modules>
 
     <properties>
