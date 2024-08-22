@@ -23,6 +23,7 @@
         <module>microservice-eureka</module>
         <module>microservice-user</module>
         <module>microservice-services</module>
+        <module>microservice-reservations</module>
     </modules>
 
     <properties>
