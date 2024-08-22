@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: msvc-reservations
+    name: msvc-services
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
