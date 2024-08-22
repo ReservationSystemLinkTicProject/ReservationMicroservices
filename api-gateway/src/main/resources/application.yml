@@ -1,8 +1,27 @@
-
+server:
+  port: 8080
 
 spring:
   application:
-    name:
-      api-gateway
-server:
-  port: 8080
+    name: mvcs-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: users
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/users/**
+        - id: reservations
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/reservations/**
+        - id: services
+          uri: http://localhost:8092
+          predicates:
+            - Path=/api/services/**
