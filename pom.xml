@@ -14,12 +14,11 @@
     <groupId>com.linktic</groupId>
     <artifactId>SpringMicorservices</artifactId>
     <version>1.0-SNAPSHOT</version>
-git q
     <name>ReservationSystem</name>
     <packaging>pom</packaging>
 
     <modules>
-
+        <module>api-gateway</module>
     </modules>
 
     <properties>
