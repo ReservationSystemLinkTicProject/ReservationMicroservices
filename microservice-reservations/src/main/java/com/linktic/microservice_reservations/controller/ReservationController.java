@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/api/reservations")
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 @Validated
 public class ReservationController {
 
