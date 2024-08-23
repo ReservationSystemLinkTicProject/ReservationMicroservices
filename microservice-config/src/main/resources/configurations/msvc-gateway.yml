@@ -14,11 +14,23 @@ spring:
           uri: http://localhost:8090
           predicates:
             - Path=/api/users/**
+          filters:
+            - AddRequestHeader=Access-Control-Allow-Origin, http://localhost:5173
+            - AddRequestHeader=Access-Control-Allow-Methods, GET,POST,PUT,DELETE
+            - AddRequestHeader=Access-Control-Allow-Headers, Content-Type
         - id: reservations
           uri: http://localhost:8091
           predicates:
             - Path=/api/reservations/**
+          filters:
+            - AddRequestHeader=Access-Control-Allow-Origin, http://localhost:5173
+            - AddRequestHeader=Access-Control-Allow-Methods, GET,POST,PUT,DELETE
+            - AddRequestHeader=Access-Control-Allow-Headers, Content-Type
         - id: services
           uri: http://localhost:8092
           predicates:
             - Path=/api/services/**
+          filters:
+            - AddRequestHeader=Access-Control-Allow-Origin, http://localhost:5173
+            - AddRequestHeader=Access-Control-Allow-Methods, GET,POST,PUT,DELETE
+            - AddRequestHeader=Access-Control-Allow-Headers, Content-Type
