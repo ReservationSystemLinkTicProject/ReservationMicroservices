@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/services")
+@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
 public class ServiceController {
     @Autowired
     private IServiceService ServiceService;
