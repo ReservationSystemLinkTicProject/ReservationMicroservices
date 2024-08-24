@@ -8,6 +8,7 @@ Antes de empezar, asegúrate de tener las siguientes herramientas instaladas en 
 
 - **Java JDK 22 o superior**: [Descargar Java](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
 - **Maven**: [Descargar Maven](https://maven.apache.org/download.cgi)
+- **MYSQL**:  [MySQL 8.0 o superior](https://dev.mysql.com/downloads/mysql/)
 
 ## Estructura del Proyecto
 ![image](https://github.com/user-attachments/assets/46563d3c-921e-4416-9e1e-4cf1831a048b)
@@ -20,6 +21,14 @@ El proyecto está estructurado en varios módulos:
 - **services**: Servicio principal que gestiona la lógica de negocio relacionada con los usuarios.
 - **reservations**: Servicio principal que gestiona la lógica de negocio relacionada con las reservas.
 - **users**: Servicio principal que gestiona la lógica de negocio relacionada con los usuarios.
+##  MySQL
+Descarga e instala MySQL desde el [sitio oficial](https://dev.mysql.com/downloads/mysql/). Durante la instalación, se te pedirá que configures una contraseña para el usuario `root` si desea usar la configuracion del proyecto el `password` es 1234.
+
+```
+CREATE DATABASE reservation_system;
+```
+
+** Nota ** : EL proyecto incluye unos archivos de importacion de datos para poder realizar pruebas rapidamente
 
 ## Configuración
 
@@ -83,7 +92,7 @@ Verificar el Funcionamiento
 Eureka Server estará disponible en http://localhost:8761.
 Config Server estará disponible en http://localhost:8888.
 API Gateway estará disponible en http://localhost:8080.
-Servicios (users, reservations, resevation) estarán disponibles en http://localhost:8090, http://localhost:8091 y http://localhost:8092 respectivamente si se agrega */swagger-ui/index.html* alas rutas anteriores podra encontra una documentacion basica de los endpoints.
+Servicios (users, reservations, resevation) estarán disponibles en http://localhost:8090, http://localhost:8091 y http://localhost:8092 respectivamente si se agrega ** /swagger-ui/index.html ** alas rutas anteriores podra encontra una documentacion basica de los endpoints.
 Rutas del API Gateway
 El API Gateway enruta las solicitudes a los siguientes servicios:
 
