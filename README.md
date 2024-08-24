@@ -28,7 +28,7 @@ Descarga e instala MySQL desde el [sitio oficial](https://dev.mysql.com/download
 CREATE DATABASE reservation_system;
 ```
 
-** Nota ** : EL proyecto incluye unos archivos de importacion de datos para poder realizar pruebas rapidamente
+**Nota** : EL proyecto incluye unos archivos de importacion de datos para poder realizar pruebas rapidamente
 
 ## Configuración
 
@@ -92,7 +92,7 @@ Verificar el Funcionamiento
 Eureka Server estará disponible en http://localhost:8761.
 Config Server estará disponible en http://localhost:8888.
 API Gateway estará disponible en http://localhost:8080.
-Servicios (users, reservations, resevation) estarán disponibles en http://localhost:8090, http://localhost:8091 y http://localhost:8092 respectivamente si se agrega ** /swagger-ui/index.html ** alas rutas anteriores podra encontra una documentacion basica de los endpoints.
+Servicios (users, reservations, resevation) estarán disponibles en http://localhost:8090, http://localhost:8091 y http://localhost:8092 respectivamente si se agrega **/swagger-ui/index.html** alas rutas anteriores podra encontra una documentacion basica de los endpoints.
 Rutas del API Gateway
 El API Gateway enruta las solicitudes a los siguientes servicios:
 
