@@ -2,10 +2,24 @@ server:
   port: 8080
 
 spring:
-  application:
-    name: msvc-gateway
   cloud:
     gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - PATCH
+            allowedHeaders:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
       discovery:
         locator:
           enabled: true
@@ -14,26 +28,11 @@ spring:
           uri: http://localhost:8090
           predicates:
             - Path=/api/users/**
-          filters:
-            - AddResponseHeader=Access-Control-Allow-Origin, http://localhost:5173
-            - AddResponseHeader=Access-Control-Allow-Methods, GET, POST, PATCH ,PUT, DELETE, OPTIONS
-            - AddResponseHeader=Access-Control-Allow-Headers, Content-Type
-            - AddResponseHeader=Access-Control-Allow-Credentials, true
         - id: reservations
           uri: http://localhost:8091
           predicates:
             - Path=/api/reservations/**
-          filters:
-            - AddResponseHeader=Access-Control-Allow-Origin, http://localhost:5173
-            - AddResponseHeader=Access-Control-Allow-Methods, GET, POST, PATCH ,PUT, DELETE, OPTIONS
-            - AddResponseHeader=Access-Control-Allow-Headers, Content-Type
-            - AddResponseHeader=Access-Control-Allow-Credentials, true
         - id: services
           uri: http://localhost:8092
           predicates:
             - Path=/api/services/**
-          filters:
-            - AddResponseHeader=Access-Control-Allow-Origin, http://localhost:5173
-            - AddResponseHeader=Access-Control-Allow-Methods, GET, POST, PATCH ,PUT, DELETE, OPTIONS
-            - AddResponseHeader=Access-Control-Allow-Headers, Content-Type
-            - AddResponseHeader=Access-Control-Allow-Credentials, true
